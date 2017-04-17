@@ -29,30 +29,6 @@ tsaplots.plot_acf(c11_mat)
 tsaplots.plot_acf(c21_mat)
 tsaplots.plot_acf(c31_mat)
 
-plt.figure(7)
-plt.plot(np.log(c11_mat))
-plt.ylabel(r'$log(\theta_1)$',fontsize=22)
-plt.xlabel('runs',fontsize=14)
-plt.title('KF1-adaptive MCMC')
-#plt.title('KF1-rwMH')
-plt.ylim((-0.8,-0.6))
-
-plt.figure(8)
-plt.plot(np.log(c21_mat))
-plt.ylabel(r'$log(\theta_2)$',fontsize=22)
-plt.xlabel('runs',fontsize=14)
-plt.title('KF1-adaptive MCMC')
-#plt.title('KF1-rwMH')
-plt.ylim((-6.2,-5.9))
-
-plt.figure(9)
-plt.plot(np.log(c31_mat))
-plt.ylabel(r'$log(\theta_3)$',fontsize=22)
-plt.xlabel('runs',fontsize=14)
-plt.title('KF1-adaptive MCMC')
-#plt.title('KF1-rwMH')
-plt.ylim((-1.7,-1.0))
-
 thinned21 = []
 thinned22 = []
 thinned23 = []
@@ -76,33 +52,6 @@ gp_lik1 = thinned23
 c12_mat = np.exp(c2_all_log[:,0])
 c22_mat = np.exp(c2_all_log[:,1])
 c32_mat = np.exp(c2_all_log[:,2])
-
-plt.figure(107)
-plt.plot(np.log(c12_mat))
-plt.ylabel(r'$log(\theta_1)$',fontsize=22)
-plt.xlabel('runs',fontsize=14)
-plt.title('KF2-adaptive MCMC')
-#plt.title('KF2-rwMH')
-plt.ylim((-0.8,-0.6))
-#plt.ylim((0.4,0.7))
-
-plt.figure(108)
-plt.plot(np.log(c22_mat))
-plt.ylabel(r'$log(\theta_2)$',fontsize=22)
-plt.xlabel('runs',fontsize=14)
-plt.title('KF2-adaptive MCMC')
-#plt.title('KF2-rwMH')
-plt.ylim((-6.1,-5.85))
-#plt.ylim((0.0005,0.0035))
-
-plt.figure(109)
-plt.plot(np.log(c32_mat))
-plt.ylabel(r'$log(\theta_3)$',fontsize=22)
-plt.xlabel('runs',fontsize=14)
-plt.title('KF2-adaptive MCMC')
-#plt.title('KF2-rwMH')
-plt.ylim((-1.4,-1.0))
-
 
 thinned21 = []
 thinned22 = []
@@ -138,6 +87,33 @@ for i in range(0,len(c32_mat)):
     mean32_mat[i] = np.mean(c32_mat[0:i+1])
 plt.figure(14)
 plt.plot(mean32_mat)
+
+plt.figure(37)
+plt.plot(c11_mat,label ="KF1",color = 'b')
+plt.plot(c12_mat,label ="KF2",color = 'g')
+plt.ylim((0.45,0.55))
+plt.ylabel(r'$\theta_1$',fontsize=22)
+plt.xlabel('runs',fontsize=14)
+plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3,
+           ncol=2, mode="expand", borderaxespad=0.)
+
+plt.figure(38)
+plt.plot(c21_mat,label ="KF1",color = 'b')
+plt.plot(c22_mat,label ="KF2",color = 'g')
+plt.ylabel(r'$\theta_2$',fontsize=22)
+plt.xlabel('runs',fontsize=14)
+plt.ylim((0.0018,0.0030))
+plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3,
+           ncol=2, mode="expand", borderaxespad=0.)
+
+plt.figure(39)
+plt.plot(c31_mat,label ="KF1",color = 'b')
+plt.plot(c32_mat,label ="KF2",color = 'g')
+plt.ylabel(r'$\theta_3$',fontsize=22)
+plt.xlabel('runs',fontsize=14)
+plt.ylim((0.1,0.4))
+plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3,
+           ncol=2, mode="expand", borderaxespad=0.)
 
 
 plt.figure()
